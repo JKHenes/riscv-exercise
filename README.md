@@ -28,7 +28,7 @@ We will use a (slightly modified) exercise from https://github.com/CTSRD-CHERI/c
  * Compile `buffer-overflow.c` to a RISC-V binary `buffer-overflow-hybrid` in hybrid capability mode (`riscv64-hybrid`). You can use the `ccc` script from `task/tools` (see the exercise docs for details) for that. What is the full commandline for compilation? 
  
  ```
- INSERT SOLUTION HERE
+ ./ccc riscv64-hybrid ../buffer-overflow.c -o ../buffer-overflow-hybrid
  ```
  
  * There is a security flaw in `buffer-overflow.c`. Briefly explain what the flaw is: 
