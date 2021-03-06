@@ -34,7 +34,17 @@ We will use a (slightly modified) exercise from https://github.com/CTSRD-CHERI/c
  * There is a security flaw in `buffer-overflow.c`. Briefly explain what the flaw is: 
  
  ```
- INSERT SOLUTION HERE
+ There is a potential buffer overflow exploit in the program. strcpy does not check the destination buffer's size, so you can have an unbounded copy from the string argument passed to the char array buffer, so a malicious input can easily overflow the hardcoded value of c (which can easily be a flag determining future program behaviour) to whatever they wish.
+
+24 bytes of memory gets allocated for the buffer at compilation (buffer requires 17 bytes, and memory can only be addressed by multiples of 8 for a 64 bit system), so an input of
+
+'AAAAAAAAAAAAAAAAAAAAAAA0'
+
+will result in the following:
+
+c = c  
+Arg = AAAAAAAAAAAAAAA  
+c = 0  
  ```
  
  * Start CHERI-RISC-V in QEMU, copy `buffer-overflow-hybrid` to the QEMU guest, and run it with a commandline argument that triggers the mentioned security flaw to overwrite the variable `c` with an attacker-controlled value. Give all the commands you have to run (assuming CHERI is in `~/cheri` and cheribuild in `~/cheribuild`):
