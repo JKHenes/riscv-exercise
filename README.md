@@ -34,9 +34,9 @@ We will use a (slightly modified) exercise from https://github.com/CTSRD-CHERI/c
  * There is a security flaw in `buffer-overflow.c`. Briefly explain what the flaw is: 
 
 
-There is a potential buffer overflow exploit in the program. strcpy does not check the destination buffer's size, so you can have an unbounded copy from the string argument passed to the char array buffer, so a malicious input can easily overflow the hardcoded value of c (which can easily be a flag determining future program behaviour) to whatever they wish.
+There is a potential buffer overflow exploit in the program. strcpy does not check the destination buffer's size, so you can have an unbounded copy from the string argument passed to the char array buffer, so a malicious input can easily overflow the hard-coded value of c (which can easily be a flag determining future program behaviour) to whatever they wish.
 
-24 bytes of memory gets allocated for the buffer at compilation (buffer requires 17 bytes, and memory can only be addressed by multiples of 8 for a 64 bit system), so an input argument of
+24 bytes of memory gets allocated for the buffer at compilation (the buffer character array requires 17 bytes, and memory can only be addressed in multiples of 8 bytes for a 64 bit system), so an input argument of
 
 ```
 AAAAAAAAAAAAAAAAAAAAAAA0
