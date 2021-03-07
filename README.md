@@ -62,6 +62,13 @@ cd /mnt/riscv-exercise/task/
 
  * Now, compile the same program in pure capability mode (`riscv64-purecap`) to `buffer-overflow-purecap`. What happens when you run this program in QEMU with the same input that triggered the flaw in `buffer-overflow-hybrid`? Explain why this happens!
 
+Running the command
  ```
- INSERT SOLUTION HERE
+ ./buffer-overflow-purecap AAAAAAAAAAAAAAAAAAAAAAA0
  ```
+gives an output of
+```
+c = c
+In-address space security exception
+```
+This terminates the program early, preventing the overflow from happening. This is because the program has been compiled in pure capability mode, which uses CHERI capabilities for all memory accesses. This compilation mode introduces safety measures such as limiting stack memory bounds in order to avoid overflow vulnerabilities like the one above.
