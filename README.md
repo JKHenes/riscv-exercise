@@ -50,7 +50,11 @@ c = 0
  * Start CHERI-RISC-V in QEMU, copy `buffer-overflow-hybrid` to the QEMU guest, and run it with a commandline argument that triggers the mentioned security flaw to overwrite the variable `c` with an attacker-controlled value. Give all the commands you have to run (assuming CHERI is in `~/cheri` and cheribuild in `~/cheribuild`):
  
   ```
-  INSERT SOLUTION HERE
+cd ~/cheribuild 
+python3 cheribuild.py -d run-riscv-hybrid
+mount_smbfs -I 10.0.2.4 -N //10.0.2.4/source_root /mnt 
+cd /mnt/riscv-exercise/task/
+./buffer-overflow-hybrid AAAAAAAAAAAAAAAAAAAAAAA0
   ```
   
  * Now, compile the same program in pure capability mode (`riscv64-purecap`) to `buffer-overflow-purecap`. What happens when you run this program in QEMU with the same input that triggered the flaw in `buffer-overflow-hybrid`? Explain why this happens!
